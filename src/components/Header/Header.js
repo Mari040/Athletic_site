@@ -27,7 +27,7 @@ export default function Header() {
           <a href="#schedule">Расписание</a>
           <a href="#price">Цены</a>
           <a href="#">Фотографии</a>
-          <a href="#">Контакты</a>
+          <a href="#contacts">Контакты</a>
         </nav>
       </div>
     </header>

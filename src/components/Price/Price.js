@@ -10,7 +10,7 @@ const prices = [
 
 export default function Price() {
   return (
-    <section id="prices" className={styles.prices}>
+    <section id="price" className={styles.prices}>
       <div className={styles.container}>
         <h2 className={styles.title}>Цены</h2>
 

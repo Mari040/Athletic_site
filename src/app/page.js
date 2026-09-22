@@ -3,6 +3,7 @@ import Hero from "@/components/Hero/Hero";
 import Coaches from "@/components/Coaches/Coaches"
 import Schedule from "@/components/Schedule/Schedule"
 import Price from "../components/Price/Price";
+import Contacts from "@/components/Contacts/Contacts";
 import styles from "./page.module.css";
 
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Coaches />
       <Schedule />
       <Price />
+      <Contacts />
     </div>
   );
 }
