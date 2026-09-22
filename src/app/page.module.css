@@ -5,7 +5,8 @@
 
   /* Треугольники главной страницы */
   background-image: url('/triangles_Main.svg');
-  background-size: cover;         /* масштабируем по ширине экрана */
+  /* background-size: cover  */
+  background-size: 1600px auto;        /* масштабируем по ширине экрана */
   background-position: top center; /* привязка к верхнему центру */
   background-repeat: no-repeat;
   /* background-attachment: fixed;   фон остаётся на месте при прокрутке */

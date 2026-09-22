@@ -7,21 +7,21 @@ const coaches = [
     image: "/images/coaches/rectangle.jpg",
     name: "Чумак Николай Андреевич",
     info: "Тренер, достижения, достижения",
-    group: "Спортивная группа",
+    group: "Спортивные группы",
   },
   {
     id: 2,
     image: "/images/coaches/rectangle.jpg",
     name: "Мезенцев Никита Иванович",
     info: "Тренер, достижения, достижения",
-    group: "Спортивная группа",
+    group: "Спортивные группы",
   },
   {
     id: 3,
     image: "/images/coaches/rectangle.jpg",
     name: "Мезенцев Тимофей Иванович",
     info: "Тренер, достижения, достижения",
-    group: "Оздоровительная группа",
+    group: "Оздоровительные группы",
   },
 ];
 

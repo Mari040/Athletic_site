@@ -24,7 +24,7 @@ export default function Header() {
         {/* Навигация — с 5-й по 8-ю колонку */}
         <nav className={styles.nav}>
           <a href="#coaches">Тренеры</a>
-          <a href="#">Расписание</a>
+          <a href="#schedule">Расписание</a>
           <a href="#">Цены</a>
           <a href="#">Фотографии</a>
           <a href="#">Контакты</a>
