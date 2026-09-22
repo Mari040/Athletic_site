@@ -2,6 +2,7 @@ import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
 import Coaches from "@/components/Coaches/Coaches"
 import Schedule from "@/components/Schedule/Schedule"
+import Price from "../components/Price/Price";
 import styles from "./page.module.css";
 
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Coaches />
       <Schedule />
+      <Price />
     </div>
   );
 }

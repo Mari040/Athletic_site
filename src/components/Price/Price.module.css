@@ -1,0 +1,177 @@
+/* ============================================= */
+/* Секция «Цены»                                  */
+/* 36px сверху до заголовка, 64px снизу           */
+/* ============================================= */
+.prices {
+  width: 100%;
+  background-color: #e8f5ff;
+  padding: 36px 0 64px;
+  scroll-margin-top: 90px;
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+/* ============================================= */
+/* Заголовок                                      */
+/* ============================================= */
+.title {
+  margin: 0;
+  text-align: center;
+  font-family: inherit;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #092f41;
+}
+
+/* ============================================= */
+/* Обёртка таблицы                                */
+/* 48px от заголовка, ширина 688px, по центру     */
+/* ============================================= */
+.tableWrapper {
+  width: 100%;
+  max-width: 688px;
+  margin: 48px auto 0;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+/* ============================================= */
+/* Таблица                                        */
+/* ============================================= */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* ============================================= */
+/* Шапка таблицы                                  */
+/* ============================================= */
+.table th {
+  height: 88px;
+  padding: 16px;
+  background: #1F5E7C;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #E8F5FF;
+}
+
+/* Вертикальные разделители в шапке — очень лёгкие */
+.table th + th {
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================= */
+/* Ячейки                                         */
+/* ============================================= */
+.table td {
+  height: 76px;
+  padding: 16px;
+  border-top: 1px solid #e1e1e1;
+  text-align: center;
+  vertical-align: middle;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #092f41;
+  background: #ffffff;
+}
+
+/* Первая строка тела — без верхней границы,
+   стык со шапкой закрывает сам фон шапки */
+.table tbody tr:first-child td {
+  border-top: none;
+}
+
+/* Вертикальные разделители в теле таблицы */
+.table td + td {
+  border-left: 1px solid #e1e1e1;
+}
+
+/* ============================================= */
+/* Ширина колонок                                 */
+/* Сумма = 688:                                    */
+/* 88 + auto(240) + 180 + 180 = 688                */
+/* ============================================= */
+.colN {
+  width: 88px;
+}
+
+.colService {
+  width: auto;
+}
+
+.colHours {
+  width: 180px;
+}
+
+.colCost {
+  width: 180px;
+}
+
+/* ============================================= */
+/* Адаптив                                        */
+/* ============================================= */
+@media (max-width: 900px) {
+  .container {
+    padding: 0 40px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .tableWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .prices {
+    padding: 30px 0 48px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .tableWrapper {
+    margin-top: 32px;
+  }
+
+  /* На узких экранах таблица остаётся 688px и прокручивается по горизонтали */
+  .table {
+    min-width: 688px;
+  }
+
+  .table th {
+    height: 72px;
+    font-size: 12px;
+  }
+
+  .table td {
+    height: 64px;
+    font-size: 12px;
+  }
+}

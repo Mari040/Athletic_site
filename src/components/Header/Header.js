@@ -25,7 +25,7 @@ export default function Header() {
         <nav className={styles.nav}>
           <a href="#coaches">Тренеры</a>
           <a href="#schedule">Расписание</a>
-          <a href="#">Цены</a>
+          <a href="#price">Цены</a>
           <a href="#">Фотографии</a>
           <a href="#">Контакты</a>
         </nav>
