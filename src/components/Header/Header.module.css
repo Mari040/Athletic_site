@@ -1,0 +1,56 @@
+.header {
+  width: 100%;
+  background-color: rgba(60, 131, 169, 0.3); /* #3C83A9 с прозрачностью 30% */
+  padding: 30px 60px;
+
+  /* Шапка прилипает к верхней части окна */
+  position: sticky;
+  top: 0;
+  z-index: 100; /* выше, чем карточка и треугольники */
+
+  /* Полупрозрачность + блюр, чтобы при прокрутке шапка не «резала» контент
+     (можно убрать, если хотите полностью прозрачную шапку) */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 колонок */
+  gap: 10px;
+  align-items: center;
+}
+
+.logo {
+  grid-column: 1 / span 3; /* 1-я колонка и занимает 3 */
+  color: #092F41;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav {
+  grid-column: 5 / span 4; /* начинается с 5-й, занимает 4 (до 8-й) */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #092F41;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}

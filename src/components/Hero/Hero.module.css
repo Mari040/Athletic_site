@@ -1,0 +1,110 @@
+.main {
+  width: 100%;
+  padding: 128px 60px 96px; /* 128 сверху от шапки, 96 снизу */
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.85); /* #FFFFFF с прозрачностью 85% */
+  border-radius: 40px;
+  padding: 48px;
+  width: 100%;
+
+  /* Контекст для позиционирования ::before */
+  position: relative;
+  /* Изолируем контекст наложения, чтобы z-index: -1
+     у псевдоэлемента не «провалился» за пределы карточки */
+  isolation: isolate;
+}
+
+/* Слой, отвечающий за размытие фона позади карточки */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 40px; /* повторяем скругление карточки */
+
+  /* Порядок важен: сначала -webkit для Safari,
+     затем стандартное свойство для Chrome, Яндекс.Браузера */
+  -webkit-backdrop-filter: blur(21px);
+  backdrop-filter: blur(21px);
+
+  z-index: -1; /* под контентом карточки, над фоном страницы */
+  pointer-events: none; /* чтобы слой не перехватывал клики */
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+  color: #092F41;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 32px;
+  font-size: 24px;
+  color: #092F41;
+  margin-bottom: 0;
+}
+
+.bottomRow {
+  margin-top: 176px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* адрес выровнен по нижнему краю со списком */
+}
+
+.list {
+  font-size: 24px;
+  color: #092F41;
+  font-weight: 500;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 8px;
+}
+
+.list li:last-child {
+  margin-bottom: 0;
+}
+
+
+.address {
+  font-size: 24px;
+  color: #092F41;
+  font-weight: 500;
+  margin: 0;
+}
+
+.buttonWrapper {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: #1F5E7C;
+  width: 345px;
+  height: 60px;
+  padding: 16px 48px;
+  font-size: 24px;
+  color: #E8F5FF;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #184A62;
+}
