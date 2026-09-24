@@ -21,15 +21,18 @@ export default function Contacts() {
                 <p className={styles.contactLine}>
                   +7 (983) 161-41-49 Фамилия Имя Отчество
                 </p>
+                <p className={styles.contactLine}>
+                  pochta@mail.ru
+                </p>
               </div>
 
               {/* Блок соцсетей: 36px сверху от контактов */}
               <div className={styles.socialBlock}>
-                <p className={styles.socialTitle}>Мы в социальных сетях</p>
+                <p className={styles.socialTitle}>Мы в социальных сетях:</p>
 
                 <div className={styles.socialIcons}>
                   <Link
-                    href="https://vk.com"
+                    href="https://vk.ru/athletic_swim"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="ВКонтакте"
@@ -43,7 +46,7 @@ export default function Contacts() {
                   </Link>
 
                   <Link
-                    href="https://t.me"
+                    href="https://t.me/ATHLETIC_SWIM"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Telegram"

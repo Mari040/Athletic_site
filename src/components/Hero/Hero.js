@@ -1,4 +1,5 @@
 import styles from "./Hero.module.css";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -24,7 +25,9 @@ export default function Hero() {
 
         {/* Кнопка */}
         <div className={styles.buttonWrapper}>
-          <button className={styles.button}>Узнать расписание</button>
+          <Link href="#schedule" className={styles.button}>
+            Узнать расписание
+          </Link>
         </div>
       </div>
     </main>

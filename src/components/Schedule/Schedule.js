@@ -113,9 +113,14 @@ export default function Schedule() {
         </div>
 
         <div className={styles.buttonWrapper}>
-          <Link href="#signup" className={styles.signupButton}>
+          <a
+            href="https://vk.ru/athletic_swim"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.signupButton}
+          >
             Записаться
-          </Link>
+          </a>
         </div>
       </div>
     </section>

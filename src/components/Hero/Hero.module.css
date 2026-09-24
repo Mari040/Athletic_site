@@ -97,12 +97,12 @@
   padding: 16px 48px;
   font-size: 24px;
   color: #E8F5FF;
-  font-weight: 500;
   font-family: inherit;
   border: none;
   border-radius: 16px;
   cursor: pointer;
   transition: background-color 0.2s;
+  text-decoration: none;
 }
 
 .button:hover {

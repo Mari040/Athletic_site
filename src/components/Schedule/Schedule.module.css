@@ -4,7 +4,7 @@
 .schedule {
   width: 100%;
   background-color: #e8f5ff; /* базовый цвет — под треугольниками */
-  padding: 64px 0 96px;
+  padding: 36px 0 96px;
   scroll-margin-top: 90px;
 
   /* Фон с треугольниками */
@@ -187,8 +187,7 @@
   border-radius: 16px;
   background: #1f5e7c;
   font-family: inherit;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 24px;
   line-height: 1;
   color: #e8f5ff;
   text-decoration: none;
