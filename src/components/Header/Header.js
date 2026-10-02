@@ -12,7 +12,7 @@ export default function Header() {
         <div className={styles.logo}>
           <Link href="/#hero" aria-label="Наверх">
             <Image
-              src="/images/Logo.png"
+              src="/images/Logo.svg"
               alt="Логотип"
               width={432}
               height={29}

@@ -5,7 +5,8 @@ import Schedule from "@/components/Schedule/Schedule"
 import Price from "../components/Price/Price";
 import Contacts from "@/components/Contacts/Contacts";
 import styles from "./page.module.css";
-
+import Reviews from "../components/Reviews/Reviews";
+import Achievements from "../components/Achievements/Achievements";
 
 export default function Home() {
   return (
@@ -13,6 +14,8 @@ export default function Home() {
       <Header />
       <Hero />
       <Coaches />
+      <Achievements />
+      < Reviews />
       <Schedule />
       <Price />
       <Contacts />
