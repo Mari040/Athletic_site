@@ -8,6 +8,12 @@
   padding: 36px 0 96px;
   scroll-margin-top: 90px;
   font-family: var(--font-montserrat), "Montserrat", sans-serif;
+
+  /* Фон с треугольниками */
+  background-image: url('/triangles_Contacts.svg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 
 .container {

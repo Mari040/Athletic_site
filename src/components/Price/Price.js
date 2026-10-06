@@ -1,11 +1,11 @@
 import styles from "./Price.module.css";
 
 const prices = [
-  { id: 1, service: "Спортивная группа", hours: "9/36", cost: "13000" },
-  { id: 2, service: "Спортивная группа", hours: "4/12", cost: "9000" },
+  { id: 1, service: "Спортивная группа 1", hours: "9/36", cost: "13000" },
+  { id: 2, service: "Спортивная группа 2", hours: "4/12", cost: "9000" },
   { id: 3, service: "Оздоровительная группа (утро)", hours: "2/8", cost: "5500" },
   { id: 4, service: "Оздоровительная группа (вечер)", hours: "2/8", cost: "6000" },
-  { id: 5, service: "Индивидуальное занятие", hours: "—", cost: "1300" },
+  { id: 5, service: "Индивидуальное занятие", hours: "—", cost: "1800" },
 ];
 
 export default function Price() {

@@ -40,8 +40,8 @@ export default function Contacts() {
                     <Image
                       src="/images/icons/vk.png"
                       alt="ВКонтакте"
-                      width={65}
-                      height={65}
+                      width={60}
+                      height={60}
                     />
                   </Link>
 
