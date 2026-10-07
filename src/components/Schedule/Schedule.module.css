@@ -33,7 +33,7 @@
 /* Табы с плавно уезжающим овалом                 */
 /* ============================================= */
 .tabs {
-  position: relative; /* обязательно — для бегунка */
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,14 +42,12 @@
   flex-wrap: wrap;
 }
 
-/* Бегунок */
 .tabIndicator {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
 
-  /* Тот же градиент, что в шапке таблицы цен */
   background:
     linear-gradient(180deg, rgba(31, 94, 124, 0.2) 0%, rgba(1, 179, 235, 0.2) 100%),
     #4dabdf;
@@ -62,7 +60,6 @@
     width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Кнопка */
 .tab {
   position: relative;
   z-index: 1;
@@ -72,19 +69,19 @@
   font-family: inherit;
   font-size: 24px;
   font-weight: 500;
-  color: #1f5e7c;
+  color: #092f41;
   cursor: pointer;
   border-radius: 999px;
   transition: color 0.35s ease;
+  white-space: nowrap;
 }
 
 .tab:hover {
   background: rgba(31, 94, 124, 0.1);
 }
 
-/* Активная кнопка — только цвет текста, фон рисует бегунок */
 .activeTab {
-  color: #092f41;
+  color: #e8f5ff;
 }
 
 .activeTab:hover {
@@ -98,7 +95,9 @@
   width: 100%;
   margin-top: 48px;
   overflow-x: auto;
+  overflow-y: hidden;
   border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table {
@@ -114,7 +113,6 @@
   border: 1px solid #d8e6ef;
 }
 
-/* Заголовки таблицы */
 .table th {
   height: 56px;
   padding: 12px;
@@ -137,7 +135,6 @@
   width: 120px;
 }
 
-/* Ячейки */
 .table td {
   height: 64px;
   padding: 12px;
@@ -160,7 +157,6 @@
   border-right: none;
 }
 
-/* Колонка времени */
 .time {
   width: 120px;
   font-weight: 600;
@@ -175,58 +171,51 @@
   font-weight: 500;
 }
 
-.table td.group1  { background: #d7efc9; }
-.table td.group2  { background: #f9dfd4; }
-.table td.group3  { background: #e6c8e7; }
-.table td.group4  { background: #f5f6b8; }
-.table td.group5  { background: #c4e9f8; }
-
+.table td.group1 { background: #d7efc9; }
+.table td.group2 { background: #f9dfd4; }
+.table td.group3 { background: #e6c8e7; }
+.table td.group4 { background: #f5f6b8; }
+.table td.group5 { background: #c4e9f8; }
 
 /* ============================================= */
 /* Цвета спортивных групп                         */
 /* ============================================= */
-
-/* Группа 1 — пастельный фиолетовый */
 .table td.sport1 {
   background: #e0d0f0;
 }
 
-/* Группа 2 — пастельный красный */
 .table td.sport2 {
   background: #f5c6c6;
 }
 
-/* «Группа 1/Группа 2» — градиент слева направо:
-   левая половина фиолетовая, правая — красная */
 .table td.sportMixed {
-  background: #D7EFC9;
+  background: #d7efc9;
 }
 
-/* «Спортзал» без указания группы — нейтральный серый */
 .table td.sportHall {
-  background: #D7EFC9;
+  background: #d7efc9;
   color: #092f41;
   font-weight: 500;
 }
+
 /* ============================================= */
 /* Пояснение под табами                           */
 /* ============================================= */
-
 .note {
   margin: 48px auto 0;
   max-width: 720px;
   text-align: center;
-
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   color: #092f41;
   opacity: 0.65;
+  padding: 0 20px;
 }
 
 /* ============================================= */
-/* Индивидуальные занятия — мягкая карточка       */
+/* Индивидуальные занятия — текстовый блок        */
 /* ============================================= */
 .individualBlock {
   max-width: 640px;
@@ -235,6 +224,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 0 20px;
 }
 
 .individualLead {
@@ -255,7 +245,6 @@
   color: #092f41;
   opacity: 0.7;
 }
-
 
 /* ============================================= */
 /* Кнопка «Записаться»                            */
@@ -287,15 +276,56 @@
 }
 
 /* ============================================= */
-/* Адаптив                                        */
+/* Планшет: 900–1100px                            */
+/* Уменьшаем шрифт, отступы, табы                 */
 /* ============================================= */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .container {
     padding: 0 40px;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 34px;
+  }
+
+  .tabs {
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .tab {
+    padding: 14px 20px;
+    font-size: 18px;
+  }
+
+  .tableWrapper {
+    margin-top: 40px;
+  }
+
+  .note {
+    margin-top: 40px;
+    font-size: 15px;
+  }
+
+  .buttonWrapper {
+    margin-top: 40px;
+  }
+}
+
+/* ============================================= */
+/* Узкий планшет: до 900px                        */
+/* ============================================= */
+@media (max-width: 900px) {
+  .schedule {
+    padding: 56px 0 80px;
+  }
+
+  .container {
+    padding: 0 32px;
+  }
+
+  .title {
+    font-size: 30px;
   }
 
   .tabs {
@@ -304,28 +334,42 @@
   }
 
   .tab {
-    padding: 12px 16px;
+    padding: 12px 18px;
     font-size: 16px;
+  }
+
+  .tableWrapper {
+    margin-top: 32px;
+  }
+
+  .note {
+    margin-top: 32px;
+    font-size: 15px;
   }
 
   .individualBlock {
-    padding: 48px 32px;
-    border-radius: 24px;
+    margin-top: 40px;
   }
 
-  .individualBlock::before {
-    border-radius: 24px;
+  .individualLead {
+    font-size: 19px;
   }
 
   .individualText {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .buttonWrapper {
+    margin-top: 40px;
   }
 }
 
+/* ============================================= */
+/* Телефон: до 600px                              */
+/* ============================================= */
 @media (max-width: 600px) {
   .schedule {
-    padding: 48px 0 64px;
-    background-image: none; /* убираем треугольники на мобильных */
+    padding: 40px 0 64px;
   }
 
   .container {
@@ -340,14 +384,15 @@
   .tabs {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-    margin-top: 32px;
+    gap: 8px;
+    margin-top: 28px;
   }
 
   .tab {
     width: 100%;
     padding: 12px 16px;
     font-size: 16px;
+    text-align: center;
   }
 
   /* Прячем бегунок — на вертикальных табах он не работает */
@@ -363,18 +408,82 @@
     color: #092f41;
   }
 
-  .individualBlock {
-    padding: 32px 24px;
-    border-radius: 24px;
+  /* Таблица остаётся 900px и скроллится внутри обёртки.
+     Уменьшаем min-width до 720px, чтобы скролл был не таким глубоким */
+  .table {
+    min-width: 720px;
   }
 
-  .individualBlock::before {
-    border-radius: 24px;
+  .table th,
+  .table td {
+    height: 52px;
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .timeHeader,
+  .time {
+    width: 90px;
+  }
+
+  .note {
+    margin-top: 28px;
+    font-size: 14px;
+    padding: 0 8px;
+  }
+
+  .individualBlock {
+    margin-top: 32px;
+    padding: 0 8px;
+    gap: 10px;
+  }
+
+  .individualLead {
+    font-size: 17px;
+  }
+
+  .individualText {
+    font-size: 14px;
+  }
+
+  .buttonWrapper {
+    margin-top: 32px;
   }
 
   .signupButton {
     width: 100%;
     padding: 16px 32px;
     font-size: 18px;
+  }
+}
+
+/* ============================================= */
+/* Малый телефон: до 400px                        */
+/* ============================================= */
+@media (max-width: 400px) {
+  .schedule {
+    padding: 32px 0 56px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .tab {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .individualLead {
+    font-size: 16px;
+  }
+
+  .individualText {
+    font-size: 13px;
+  }
+
+  .signupButton {
+    font-size: 16px;
+    padding: 14px 24px;
   }
 }

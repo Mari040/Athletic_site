@@ -6,6 +6,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -19,3 +21,4 @@ html {
 [id] {
   scroll-margin-top: 90px;
 }
+

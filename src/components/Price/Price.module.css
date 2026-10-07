@@ -1,6 +1,5 @@
 /* ============================================= */
 /* Секция «Цены»                                  */
-/* 36px сверху до заголовка, 64px снизу           */
 /* ============================================= */
 .prices {
   width: 100%;
@@ -9,11 +8,20 @@
   scroll-margin-top: 90px;
   font-family: var(--font-montserrat), "Montserrat", sans-serif;
 
-  /* Фон с треугольниками */
+  /* Фон с треугольниками — проверьте имя файла!
+     Если у вас отдельный SVG для цен, замените на triangles_Prices.svg */
   background-image: url('/triangles_Contacts.svg');
-  background-size: cover;
+  background-size: 1440px auto;
   background-position: top center;
   background-repeat: no-repeat;
+}
+
+/* На десктопе фиксируем фон, чтобы он не уезжал при скролле.
+   На мобильных (особенно iOS Safari) fixed работает плохо — отключаем. */
+@media (min-width: 901px) {
+  .prices {
+    background-attachment: fixed;
+  }
 }
 
 .container {
@@ -38,14 +46,15 @@
 
 /* ============================================= */
 /* Обёртка таблицы                                */
-/* 48px от заголовка, ширина 688px, по центру     */
 /* ============================================= */
 .tableWrapper {
   width: 100%;
   max-width: 688px;
   margin: 48px auto 0;
   overflow-x: auto;
+  overflow-y: hidden;
   border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ============================================= */
@@ -69,15 +78,15 @@
   height: 88px;
   padding: 12px;
 
-  /* Слой 1 (верхний): градиент с альфа-каналом 20%
-     Слой 2 (нижний): базовый цвет, как на треугольниках */
+  /* Слой 1: градиент с альфой 20%.
+     Слой 2: базовый цвет как на треугольниках */
   background:
     linear-gradient(
       0deg,
       rgba(31, 94, 124, 0.2) 0%,
       rgba(1, 179, 235, 0.2) 100%
     ),
-    #4DABDF;
+    #4dabdf;
 
   text-align: center;
   vertical-align: middle;
@@ -85,15 +94,11 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.3;
-  color: #E8F5FF;
+  color: #092f41;   /* ← было #E8F5FF — не читалось */
+  overflow-wrap: break-word;
 }
 
-/* Лёгкие вертикальные разделители в шапке */
-.table th + th {
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-/* Вертикальные разделители в шапке — очень лёгкие */
+/* Лёгкие вертикальные разделители в шапке (одно правило, не два) */
 .table th + th {
   border-left: 1px solid rgba(255, 255, 255, 0.25);
 }
@@ -128,8 +133,6 @@
 
 /* ============================================= */
 /* Ширина колонок                                 */
-/* Сумма = 688:                                    */
-/* 88 + auto(240) + 180 + 180 = 688                */
 /* ============================================= */
 .colN {
   width: 88px;
@@ -148,25 +151,61 @@
 }
 
 /* ============================================= */
-/* Адаптив                                        */
+/* Планшет: 900–1100px                            */
 /* ============================================= */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .container {
     padding: 0 40px;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 34px;
   }
 
   .tableWrapper {
-    max-width: 100%;
+    margin-top: 40px;
   }
 }
 
+/* ============================================= */
+/* Узкий планшет: до 900px                        */
+/* ============================================= */
+@media (max-width: 900px) {
+  .prices {
+    padding: 32px 0 72px;
+  }
+
+  .container {
+    padding: 0 32px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  /* Таблица растягивается до доступной ширины */
+  .tableWrapper {
+    max-width: 100%;
+    margin-top: 36px;
+  }
+
+  .table th {
+    height: 80px;
+    font-size: 13px;
+  }
+
+  .table td {
+    height: 68px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================= */
+/* Телефон: до 600px                              */
+/* ============================================= */
 @media (max-width: 600px) {
   .prices {
-    padding: 30px 0 48px;
+    padding: 28px 0 56px;
   }
 
   .container {
@@ -178,21 +217,59 @@
   }
 
   .tableWrapper {
-    margin-top: 32px;
+    margin-top: 28px;
+    /* Скругляем углы поменьше — визуально аккуратнее на телефоне */
+    border-radius: 12px;
   }
 
-  /* На узких экранах таблица остаётся 688px и прокручивается по горизонтали */
+  /* Таблица сохраняет 688px и скроллится горизонтально */
   .table {
     min-width: 688px;
+    border-radius: 12px;
   }
 
   .table th {
-    height: 72px;
+    height: 64px;
+    padding: 8px;
     font-size: 12px;
   }
 
   .table td {
-    height: 64px;
+    height: 60px;
+    padding: 8px;
     font-size: 12px;
+  }
+
+  .colN {
+    width: 60px;
+  }
+
+  .colHours {
+    width: 150px;
+  }
+
+  .colCost {
+    width: 150px;
+  }
+}
+
+/* ============================================= */
+/* Малый телефон: до 400px                        */
+/* ============================================= */
+@media (max-width: 400px) {
+  .prices {
+    padding: 24px 0 48px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .tableWrapper {
+    margin-top: 24px;
   }
 }
