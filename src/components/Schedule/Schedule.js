@@ -12,6 +12,9 @@ const days = [
   "Суббота",
 ];
 
+// Короткие имена для мобильного переключателя дней
+const daysShort = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+
 const scheduleData = {
   "Оздоровительные группы": [
     { time: "10:00–11:00", groups: ["", "Группа 5", "", "Группа 5", "", "Группа 1"] },
@@ -21,37 +24,17 @@ const scheduleData = {
     { time: "18:00–19:00", groups: ["", "Группа 2", "", "Группа 4", "", ""] },
     { time: "19:00–20:00", groups: ["Группа 1", "", "Группа 3", "", "", ""] },
   ],
-
   "Спортивные группы": [
-    {
-      time: "19:00–20:00",
-      groups: ["", "", "", "", "Группа 1", ""],
-    },
+    { time: "19:00–20:00", groups: ["", "", "", "", "Группа 1", ""] },
     {
       time: "20:00–21:00",
-      groups: [
-        "Группа 1",
-        "Спортзал (Группа 1 / Группа 2",
-        "Группа 1",
-        "Спортзал (Группа 1)",
-        "Группа 1",
-        "",
-      ],
+      groups: ["Группа 1", "Спортзал", "Группа 1", "Спортзал (Группа 1)", "Группа 1", ""],
     },
     {
       time: "21:00–21:45",
-      groups: [
-        "Группа 1",
-        "Группа 1 / Группа 2",
-        "Группа 1",
-        "Группа 1 / Группа 2",
-        "Группа 2",
-        "",
-      ],
+      groups: ["Группа 1", "Группа 1/Группа 2", "Группа 1", "Группа 1/Группа 2", "Группа 2", ""],
     },
   ],
-
-  // Для индивидуалок расписания нет — рендерим текстовый блок
   "Индивидуальные занятия": null,
 };
 
@@ -61,41 +44,26 @@ const tabs = [
   "Индивидуальные занятия",
 ];
 
-// =============================================
-// Хелпер для ОЗДОРОВИТЕЛЬНЫХ групп:
-// «Группа 5» → класс group5
-// =============================================
 function getHealthGroupClass(group, styles) {
   const number = group.match(/\d+/)?.[0];
   return number ? styles[`group${number}`] : "";
 }
 
-// =============================================
-// Хелпер для СПОРТИВНЫХ групп:
-// цвет определяется по составу текста
-// =============================================
 function getSportGroupClass(group, styles) {
   if (!group) return "";
-
-  // «Группа 1/Группа 2» — обе группы в одной ячейке
   if (group.includes("/")) return styles.sportMixed;
-
-  // «Группа 1» и «Спортзал (Группа 1)» → цвет группы 1
   if (group.includes("Группа 1")) return styles.sport1;
   if (group.includes("Группа 2")) return styles.sport2;
-
-  // «Спортзал» без указания группы → нейтральный
   if (group.toLowerCase().includes("спортзал")) return styles.sportHall;
-
   return "";
 }
 
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [selectedDay, setSelectedDay] = useState(0);
   const isIndividual = activeTab === "Индивидуальные занятия";
   const rows = scheduleData[activeTab];
 
-  // Бегунок под табами
   const tabsRef = useRef({});
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
@@ -103,23 +71,16 @@ export default function Schedule() {
     const update = () => {
       const btn = tabsRef.current[activeTab];
       if (btn) {
-        setIndicator({
-          left: btn.offsetLeft,
-          width: btn.offsetWidth,
-        });
+        setIndicator({ left: btn.offsetLeft, width: btn.offsetWidth });
       }
     };
-
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, [activeTab]);
 
-  // Функция-роутер: выбирает хелпер в зависимости от вкладки
   const getGroupClass = (group) => {
-    if (activeTab === "Спортивные группы") {
-      return getSportGroupClass(group, styles);
-    }
+    if (activeTab === "Спортивные группы") return getSportGroupClass(group, styles);
     return getHealthGroupClass(group, styles);
   };
 
@@ -129,7 +90,6 @@ export default function Schedule() {
         <h2 className={styles.title}>Расписание тренировок</h2>
 
         <div className={styles.tabs}>
-          {/* Бегунок — плавно двигается под активной кнопкой */}
           <span
             className={styles.tabIndicator}
             style={{
@@ -137,17 +97,12 @@ export default function Schedule() {
               width: indicator.width,
             }}
           />
-
           {tabs.map((tab) => (
             <button
               key={tab}
               type="button"
-              ref={(el) => {
-                tabsRef.current[tab] = el;
-              }}
-              className={`${styles.tab} ${
-                activeTab === tab ? styles.activeTab : ""
-              }`}
+              ref={(el) => { tabsRef.current[tab] = el; }}
+              className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ""}`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -155,62 +110,82 @@ export default function Schedule() {
           ))}
         </div>
 
-        {/* Пояснение для спортивных групп */}
         {activeTab === "Спортивные группы" && (
           <p className={styles.note}>
-            Запись в спортивные группы осуществляется по результатам сдачи нормативов
+            Запись в спортивные группы осуществляется по&nbsp;результатам сдачи нормативов
           </p>
         )}
 
-        {/* Индивидуальные занятия — текстовый блок вместо таблицы */}
         {isIndividual ? (
           <div className={styles.individualBlock}>
-            <p className={styles.individualText}>
-              Индивидуальные занятия не привязаны к общему расписанию.
+            <p className={styles.individualLead}>
+              Индивидуальные занятия не привязаны к общему расписанию
             </p>
             <p className={styles.individualText}>
               Время подбирается индивидуально — исходя из ваших пожеланий
-              и свободного времени тренера.
-            </p>
-            <p className={styles.individualText}>
-              Свяжитесь с нами, и мы предложим удобный для вас слот.
+              и свободного времени тренера. Свяжитесь с нами, и мы предложим
+              удобный для вас слот.
             </p>
           </div>
         ) : (
-          /* Таблица для оздоровительных и спортивных групп */
-          <div className={styles.tableWrapper}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th className={styles.timeHeader}>Время</th>
-                  {days.map((day) => (
-                    <th key={day}>{day}</th>
-                  ))}
-                </tr>
-              </thead>
-
-              <tbody>
-                {rows.map(({ time, groups }) => (
-                  <tr key={time}>
-                    <td className={styles.time}>{time}</td>
-
-                    {groups.map((group, index) => (
-                      <td
-                        key={`${time}-${index}`}
-                        className={
-                          group
-                            ? `${styles.groupCell} ${getGroupClass(group)}`
-                            : ""
-                        }
-                      >
-                        {group}
-                      </td>
-                    ))}
+          <>
+            {/* Десктоп: обычная таблица */}
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th className={styles.timeHeader}>Время</th>
+                    {days.map((day) => <th key={day}>{day}</th>)}
                   </tr>
+                </thead>
+                <tbody>
+                  {rows.map(({ time, groups }) => (
+                    <tr key={time}>
+                      <td className={styles.time}>{time}</td>
+                      {groups.map((group, index) => (
+                        <td
+                          key={`${time}-${index}`}
+                          className={group ? `${styles.groupCell} ${getGroupClass(group)}` : ""}
+                        >
+                          {group}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Мобильный вид: переключатель дней + список */}
+            <div className={styles.mobileSchedule}>
+              <div className={styles.daySelector}>
+                {days.map((day, i) => (
+                  <button
+                    key={day}
+                    type="button"
+                    className={`${styles.dayBtn} ${selectedDay === i ? styles.dayBtnActive : ""}`}
+                    onClick={() => setSelectedDay(i)}
+                  >
+                    {daysShort[i]}
+                  </button>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
+
+              <div className={styles.mobileList}>
+                {rows.map(({ time, groups }) => {
+                  const group = groups[selectedDay];
+                  return (
+                    <div key={time} className={styles.mobileRow}>
+                      <span className={styles.mobileTime}>{time}</span>
+                      <span className={`${styles.mobileGroup} ${group ? getGroupClass(group) : ""}`}>
+                        {group || "—"}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
         )}
 
         <div className={styles.buttonWrapper}>

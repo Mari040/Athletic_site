@@ -1,6 +1,13 @@
 import styles from "./Coaches.module.css";
 import Image from "next/image";
 
+// Фамилия и Имя остаются вместе, Отчество переносится на вторую строку
+function formatName(fullName) {
+  const parts = fullName.trim().split(" ");
+  if (parts.length < 3) return fullName;
+  return `${parts[0]}\u00A0${parts[1]} ${parts.slice(2).join(" ")}`;
+}
+
 const coaches = [
   {
     id: 1,
@@ -43,7 +50,7 @@ export default function Coaches() {
               />
 
               {/* ФИО — сверху, с отступом 20px со всех сторон */}
-              <p className={styles.name}>{coach.name}</p>
+              <p className={styles.name}>{formatName(coach.name)}</p>
 
               {/* Описание — снизу, с отступом 20px со всех сторон */}
               <p className={styles.info}>{coach.info}</p>
